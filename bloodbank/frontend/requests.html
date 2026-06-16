@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emergency Requests — Blood Bank Management System</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="main">
+            <h2>Emergency Requests</h2>
+            <p class="page-subtitle">Hospital requests for blood units, with urgency-based fulfillment.</p>
+
+            <div id="alert-box"></div>
+
+            <div class="card">
+                <div class="toolbar">
+                    <div class="filters">
+                        <div class="form-group">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status">
+                                <option value="">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="partially_fulfilled">Partially Fulfilled</option>
+                                <option value="fulfilled">Fulfilled</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-urgency">Urgency</label>
+                            <select id="filter-urgency">
+                                <option value="">All</option>
+                                <option value="critical">Critical</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-blood-type">Blood Type</label>
+                            <select id="filter-blood-type">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="add-request-btn">+ New Request</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th><th>Hospital</th><th>Blood Type</th><th>Units Requested</th>
+                                <th>Urgency</th><th>Status</th><th>Requested On</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requests-body">
+                            <tr><td colspan="8" class="empty-state">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- New Request Modal -->
+    <div class="modal-overlay" id="request-modal">
+        <div class="modal">
+            <h3>New Emergency Request</h3>
+            <form id="request-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="hospital_id">Hospital *</label>
+                        <select id="hospital_id" required>
+                            <option value="">Select hospital</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="blood_type">Blood Type *</label>
+                        <select id="blood_type" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="units_requested">Units Requested *</label>
+                        <input type="number" id="units_requested" min="1" required value="1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency_level">Urgency Level *</label>
+                        <select id="urgency_level" required>
+                            <option value="">Select</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <button type="button" class="btn btn-secondary" id="request-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Request Detail / Fulfillment Modal -->
+    <div class="modal-overlay" id="detail-modal">
+        <div class="modal">
+            <h3 id="detail-title">Request Details</h3>
+            <div id="detail-content"></div>
+            <div class="modal-close-row">
+                <button type="button" class="btn btn-secondary" id="detail-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/requests.js"></script>
+</body>
+</html>

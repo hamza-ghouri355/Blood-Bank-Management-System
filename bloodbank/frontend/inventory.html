@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blood Inventory — Blood Bank Management System</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="main">
+            <h2>Blood Inventory</h2>
+            <p class="page-subtitle">Track blood units, expiry dates, storage locations, and status.</p>
+
+            <div id="alert-box"></div>
+
+            <div class="card">
+                <div class="toolbar">
+                    <div class="filters">
+                        <div class="form-group">
+                            <label for="filter-blood-type">Blood Type</label>
+                            <select id="filter-blood-type">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-status">Status</label>
+                            <select id="filter-status">
+                                <option value="">All</option>
+                                <option value="Available">Available</option>
+                                <option value="Reserved">Reserved</option>
+                                <option value="Used">Used</option>
+                                <option value="Expired">Expired</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn btn-secondary" id="check-expiry-btn">Run Expiry Check</button>
+                        <button class="btn btn-primary" id="add-unit-btn">+ Add Unit</button>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Unit ID</th><th>Blood Type</th><th>Volume (ml)</th>
+                                <th>Collection Date</th><th>Expiry Date</th><th>Location</th>
+                                <th>Status</th><th>Donor</th><th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-body">
+                            <tr><td colspan="9" class="empty-state">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Inventory Modal -->
+    <div class="modal-overlay" id="inventory-modal">
+        <div class="modal">
+            <h3 id="inventory-modal-title">Add Blood Unit</h3>
+            <form id="inventory-form">
+                <input type="hidden" id="unit-id" />
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="blood_type">Blood Type *</label>
+                        <select id="blood_type" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="volume_ml">Volume (ml) *</label>
+                        <input type="number" id="volume_ml" min="1" required value="450" />
+                    </div>
+                    <div class="form-group">
+                        <label for="collection_date">Collection Date *</label>
+                        <input type="date" id="collection_date" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry_date">Expiry Date *</label>
+                        <input type="date" id="expiry_date" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="storage_location">Storage Location *</label>
+                        <input type="text" id="storage_location" required placeholder="e.g. Fridge A1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="Available">Available</option>
+                            <option value="Reserved">Reserved</option>
+                            <option value="Used">Used</option>
+                            <option value="Expired">Expired</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="donor_id">Donor ID (optional)</label>
+                        <input type="number" id="donor_id" min="1" placeholder="Link to donor" />
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" id="inventory-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/inventory.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "bloodbank-backend",
+  "version": "1.0.0",
+  "description": "Blood Bank Management System - Backend (CS-229T DBMS Project)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "reset-db": "node db/reset.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "sqlite3": "^5.1.7"
+  }
+}

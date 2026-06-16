@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Blood Bank Management System</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="main">
+            <h2>Admin Dashboard</h2>
+            <p class="page-subtitle">Overview of blood inventory, requests, and recent activity.</p>
+
+            <div id="alert-box"></div>
+
+            <section class="stats-grid" id="stats-grid">
+                <!-- Stat cards injected here -->
+            </section>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Blood Type Availability</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Blood Type</th><th>Units Available</th><th>Total Volume (ml)</th></tr>
+                            </thead>
+                            <tbody id="blood-summary-body">
+                                <tr><td colspan="3" class="empty-state">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Units Expiring Within 7 Days</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Unit ID</th><th>Blood Type</th><th>Expiry Date</th><th>Days Left</th><th>Location</th></tr>
+                            </thead>
+                            <tbody id="expiring-body">
+                                <tr><td colspan="5" class="empty-state">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Recent Donations</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Donor</th><th>Unit ID</th><th>Date</th><th>Volume (ml)</th></tr>
+                            </thead>
+                            <tbody id="recent-donations-body">
+                                <tr><td colspan="4" class="empty-state">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Pending Emergency Requests</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>Hospital</th><th>Blood Type</th><th>Units</th><th>Urgency</th><th>Requested</th></tr>
+                            </thead>
+                            <tbody id="pending-requests-body">
+                                <tr><td colspan="5" class="empty-state">Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top: 12px;">
+                        <a href="requests.html" class="btn btn-secondary btn-sm">View All Requests →</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
