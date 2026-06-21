@@ -1,13 +1,12 @@
-// routes/requests.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const requestController = require('../controllers/requestController');
+const requestController = require("../controllers/requestController");
 
-router.get('/pending', requestController.getPendingRequests);
-router.get('/', requestController.getAllRequests);
-router.get('/:id', requestController.getRequestById);
-router.post('/', requestController.createRequest);
-router.put('/:id/reject', requestController.rejectRequest);
-router.post('/:id/fulfill', requestController.fulfillRequest);
+router.get("/pending", requestController.getPendingRequests);
+router.get("/", requestController.getAllRequests);
+router.get("/:id", requestController.getRequestById);
+router.post("/", requestController.createRequest);
+router.put("/:id/reject", requestController.rejectRequest);
+router.post("/:id/fulfill", requestController.fulfillRequest);
 
 module.exports = router;
